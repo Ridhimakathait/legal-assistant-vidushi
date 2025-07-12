@@ -1,0 +1,92 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Good morning", "Good evening", "Hey there"],
+      "responses": [
+        "Hello! I'm Vidushi, your legal assistant. How can I help you with your legal questions today?",
+        "Hi there! I'm here to help you understand Indian laws and legal procedures. What would you like to know?",
+        "Greetings! I can assist you with legal information, complaint procedures, and understanding your rights. How may I help?"
+      ]
+    },
+    {
+      "tag": "fir_filing",
+      "patterns": [
+        "How to file FIR",
+        "FIR registration process",
+        "File police complaint",
+        "Register FIR online",
+        "Police complaint procedure"
+      ],
+      "responses": [
+        "To file an FIR: 1) Visit the nearest police station in whose jurisdiction the crime occurred, 2) Provide a written complaint with all details, 3) Police must register FIR for cognizable offenses, 4) Get a copy of the FIR with FIR number. Remember, filing FIR is free of cost."
+      ]
+    },
+    {
+      "tag": "domestic_violence",
+      "patterns": [
+        "Domestic violence complaint",
+        "How to report domestic abuse",
+        "Domestic violence act",
+        "Protection from domestic violence",
+        "DV case filing"
+      ],
+      "responses": [
+        "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders. The complaint can be filed by the aggrieved person or on her behalf by relatives, social workers, or organizations."
+      ]
+    },
+    {
+      "tag": "sexual_harassment",
+      "patterns": [
+        "Sexual harassment at workplace",
+        "POSH act",
+        "Workplace harassment complaint",
+        "Sexual harassment law",
+        "Office harassment"
+      ],
+      "responses": [
+        "Under POSH Act 2013, every workplace must have Internal Complaints Committee (ICC). You can file complaint within 3 months of incident. ICC must complete inquiry within 90 days. Employer must provide safe working environment and take action based on ICC recommendations."
+      ]
+    },
+    {
+      "tag": "theft_law",
+      "patterns": ["Theft punishment", "Stealing law", "IPC theft section", "Property theft", "Robbery law"],
+      "responses": [
+        "Under IPC Section 378-382, theft is punishable with imprisonment up to 3 years, or fine, or both. The punishment varies based on the value of stolen property and circumstances. For theft in dwelling house (Section 380), punishment can extend to 7 years."
+      ]
+    },
+    {
+      "tag": "bail_information",
+      "patterns": ["How to get bail", "Bail procedure", "Bailable offense", "Non-bailable offense", "Bail application"],
+      "responses": [
+        "Bailable offenses allow release on bail as a matter of right. Non-bailable offenses require court's discretion. Bail application should include personal details, nature of offense, grounds for bail, and surety details. Bail can be denied if accused may flee or tamper with evidence."
+      ]
+    },
+    {
+      "tag": "divorce_grounds",
+      "patterns": [
+        "Divorce grounds",
+        "How to file divorce",
+        "Divorce procedure",
+        "Marriage dissolution",
+        "Divorce law India"
+      ],
+      "responses": [
+        "Grounds for divorce under Hindu Marriage Act include: adultery, cruelty, desertion for 2+ years, conversion to another religion, mental disorder, communicable disease, renunciation of world. Under Muslim law: Khula, Mubarat, Talaq. Under Christian law: adultery, cruelty, desertion for 2+ years."
+      ]
+    },
+    {
+      "tag": "womens_rights",
+      "patterns": [
+        "Women rights in India",
+        "Legal rights of women",
+        "Women protection laws",
+        "Female legal rights",
+        "Women empowerment laws"
+      ],
+      "responses": [
+        "Women in India have various legal rights including: Right to equality (Article 14), Right against discrimination (Article 15), Right to life and liberty (Article 21), Right to education, Right to work, Protection from domestic violence, Protection from sexual harassment, Property rights, and Maintenance rights."
+      ]
+    }
+  ]
+}
