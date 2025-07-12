@@ -37,4 +37,12 @@ Coming soon:
 
 ---
 
+## 🧪 Preview
 
+<img width="1896" height="865" alt="image" src="https://github.com/user-attachments/assets/35bf84ab-d3e8-427c-b2c7-7c1046c9f160" />
+
+---
+
+<img width="1899" height="866" alt="Screenshot 2025-07-12 180046" src="https://github.com/user-attachments/assets/092713fe-a02a-45ea-97a9-4594e3fb1fef" />
+
+---
