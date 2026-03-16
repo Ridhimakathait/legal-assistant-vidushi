@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vidushi - Your AI-powered legal assistant for understanding Indian laws">
+    <meta name="theme-color" content="#ec4899">
+    <title>Vidushi - Legal Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="nav-brand">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                    <h1>Vidushi</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#laws">Laws</a>
+                    <a href="#chatbot">Chat</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-header">
+                    <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                    <h1>Vidushi</h1>
+                </div>
+                <p class="hero-subtitle">Your AI-powered legal assistant for understanding Indian laws, filing complaints, and accessing justice</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="navigateTo('#chatbot')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        Ask Legal Questions
+                    </button>
+                    <button class="btn btn-secondary" onclick="navigateTo('#laws')">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                        Explore Laws
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card stat-pink">
+                    <div class="stat-number">500+</div>
+                    <p class="stat-text">Legal Sections Covered</p>
+                </div>
+                <div class="stat-card stat-rose">
+                    <div class="stat-number">24/7</div>
+                    <p class="stat-text">AI Assistant Available</p>
+                </div>
+                <div class="stat-card stat-fuchsia">
+                    <div class="stat-number">1000+</div>
+                    <p class="stat-text">Users Helped</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Comprehensive Legal Assistance</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                    <h3>Law Explorer</h3>
+                    <p>Browse IPC, CrPC, and special laws including Domestic Violence Act, POSH, and more</p>
+                    <button class="btn btn-outline" onclick="navigateTo('#laws')">Explore Laws</button>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <h3>AI Chatbot</h3>
+                    <p>Get instant answers to your legal questions with our intelligent assistant</p>
+                    <button class="btn btn-outline" onclick="navigateTo('#chatbot')">Start Chat</button>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                        <polyline points="13 2 13 9 20 9"/>
+                    </svg>
+                    <h3>Complaint Guide</h3>
+                    <p>Step-by-step guidance for filing FIRs, cyber complaints, and other legal procedures</p>
+                    <button class="btn btn-outline" onclick="navigateTo('#complaints')">Get Guidance</button>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    <h3>FAQ</h3>
+                    <p>Find answers to commonly asked legal questions, categorized and searchable</p>
+                    <button class="btn btn-outline" onclick="navigateTo('#faq')">Browse FAQ</button>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <h3>Legal Forms</h3>
+                    <p>Download templates for complaints, RTI applications, and other legal documents</p>
+                    <button class="btn btn-outline" onclick="alert('Forms download feature coming soon!')">Download Forms</button>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h3>Women's Rights</h3>
+                    <p>Specialized guidance on women's legal rights and protection laws</p>
+                    <button class="btn btn-outline" onclick="navigateTo('#womens-rights')">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Language Support Section -->
+    <section id="languages" class="language-section">
+        <div class="container">
+            <h2>Multi-Language Support</h2>
+            <div class="language-badges">
+                <span class="badge">English</span>
+                <span class="badge">हिंदी</span>
+            </div>
+            <p>Access legal information and assistance in both English and Hindi to ensure everyone can understand their rights and legal options.</p>
+        </div>
+    </section>
+
+    <!-- Laws Section -->
+    <section id="laws" class="section-container">
+        <div class="container">
+            <h2>Explore Laws</h2>
+            <div class="search-box">
+                <input type="text" id="law-search" placeholder="Search laws...">
+            </div>
+            <div id="laws-list" class="laws-grid">
+                <div class="law-item">
+                    <h3>Indian Penal Code (IPC)</h3>
+                    <p>Covers criminal law and offenses</p>
+                    <button class="btn btn-small" onclick="showDetail('IPC')">Learn More</button>
+                </div>
+                <div class="law-item">
+                    <h3>Criminal Procedure Code (CrPC)</h3>
+                    <p>Procedures for criminal cases</p>
+                    <button class="btn btn-small" onclick="showDetail('CrPC')">Learn More</button>
+                </div>
+                <div class="law-item">
+                    <h3>Protection of Women Act</h3>
+                    <p>Domestic violence protection laws</p>
+                    <button class="btn btn-small" onclick="showDetail('POSH')">Learn More</button>
+                </div>
+                <div class="law-item">
+                    <h3>Sexual Harassment Act (POSH)</h3>
+                    <p>Workplace safety for women</p>
+                    <button class="btn btn-small" onclick="showDetail('SH')">Learn More</button>
+                </div>
+                <div class="law-item">
+                    <h3>Information Technology Act</h3>
+                    <p>Cyber crimes and digital laws</p>
+                    <button class="btn btn-small" onclick="showDetail('ITA')">Learn More</button>
+                </div>
+                <div class="law-item">
+                    <h3>Right to Information Act</h3>
+                    <p>Access to government information</p>
+                    <button class="btn btn-small" onclick="showDetail('RTI')">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="section-container">
+        <div class="container">
+            <h2>AI Legal Chatbot</h2>
+            <div class="chatbox">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message bot-message">
+                        <p>Hello! I'm Vidushi, your AI legal assistant. How can I help you today?</p>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Ask your legal question..." />
+                    <button class="btn btn-chat" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-container">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What should I do if I'm a victim of domestic violence?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can file a complaint under the Protection of Women from Domestic Violence Act, 2005. Contact your local police station or women's helpline for immediate assistance. You can also approach a lawyer to file a case for protection.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How do I file an FIR?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can file an FIR at your local police station. You can go in person, send a written letter, or file online on the police website. Provide all relevant details and evidence. You have the right to obtain a copy of your FIR.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is Right to Information (RTI)?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>RTI is your right to request information from public authorities. You can file an RTI application with the government office. They must respond within 30 days. There's a small fee involved, typically ₹10.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is cyber harassment?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Cyber harassment includes sending threatening messages, spreading rumors, or abusive content online. It's punishable under the IT Act. You can report it to the cyber cell and file a police complaint. Document all evidence.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How much time does a court case take?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Court cases typically take 2-5 years depending on complexity and court load. Civil cases may take longer than criminal cases. Regular follow-ups with your lawyer can help expedite the process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complaints Guide Section -->
+    <section id="complaints" class="section-container">
+        <div class="container">
+            <h2>Filing a Complaint - Step by Step</h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Gather Information</h3>
+                    <p>Collect all relevant details about the incident including dates, times, locations, and witness names.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Choose the Right Authority</h3>
+                    <p>Determine whether to file with police, cyber cell, labor department, or other relevant authority.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Prepare Your Statement</h3>
+                    <p>Write a clear, concise account of what happened. Be factual and include all relevant evidence.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>File Your Complaint</h3>
+                    <p>Submit your complaint in person, by post, or online through the official portal.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>Obtain Receipt</h3>
+                    <p>Get an acknowledgment receipt with a case/complaint number for future reference.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>Follow Up</h3>
+                    <p>Regularly follow up on your complaint status and provide additional information if requested.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Women's Rights Section -->
+    <section id="womens-rights" class="section-container">
+        <div class="container">
+            <h2>Women's Legal Rights</h2>
+            <div class="rights-grid">
+                <div class="right-card">
+                    <h3>Protection from Harassment</h3>
+                    <p>Right to file complaints against sexual harassment at work, home, or in public places under POSH Act and IPC sections 354, 509.</p>
+                </div>
+                <div class="right-card">
+                    <h3>Domestic Violence Protection</h3>
+                    <p>Protection under the Domestic Violence Act, 2005. You can seek orders for protection, residence, and maintenance from courts.</p>
+                </div>
+                <div class="right-card">
+                    <h3>Equal Pay for Equal Work</h3>
+                    <p>Right to equal remuneration for same work or work of a similar nature as per the Equal Remuneration Act, 1976.</p>
+                </div>
+                <div class="right-card">
+                    <h3>Maternity Benefits</h3>
+                    <p>Right to paid maternity leave, medical benefits, and protection from dismissal during pregnancy under the Maternity Benefit Act.</p>
+                </div>
+                <div class="right-card">
+                    <h3>Property Rights</h3>
+                    <p>Full rights to own, inherit, and manage property. Married women have rights to husband's property as per succession laws.</p>
+                </div>
+                <div class="right-card">
+                    <h3>Education and Employment</h3>
+                    <p>No discrimination in education or employment based on gender. Right to work in all professions and receive equal opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Vidushi - AI-Powered Legal Assistant. All rights reserved.</p>
+            <p>Disclaimer: This is for informational purposes only and not legal advice.</p>
+        </div>
+    </footer>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
