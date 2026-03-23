@@ -33,27 +33,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <Card className="text-center border-pink-200 bg-pink-50/50">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-pink-600 mb-2">500+</div>
-              <p className="text-pink-700">Legal Sections Covered</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-rose-200 bg-rose-50/50">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-rose-600 mb-2">24/7</div>
-              <p className="text-rose-700">AI Assistant Available</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center border-fuchsia-200 bg-fuchsia-50/50">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-fuchsia-600 mb-2">1000+</div>
-              <p className="text-fuchsia-700">Users Helped</p>
-            </CardContent>
-          </Card>
-        </div>
+
       </section>
 
       {/* Features Section */}
