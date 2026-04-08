@@ -7,8 +7,8 @@ interface ChatMessage {
 
 // Mock legal knowledge base
 const legalResponses = {
-  theft:
-    "Under IPC Section 378-382, theft is punishable with imprisonment up to 3 years, or fine, or both. The punishment varies based on the value of stolen property and circumstances.",
+  dowry:
+    "If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees",
 
   "domestic violence":
     "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders.",

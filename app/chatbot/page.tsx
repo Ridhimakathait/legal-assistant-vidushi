@@ -15,7 +15,7 @@ interface Message {
 }
 
 const suggestedQuestions = [
-  "What is the punishment for theft under IPC?",
+  "What is the punishment for demanding dowry?",
   "How to file a domestic violence complaint?",
   "What are women's rights in workplace harassment?",
   "How to register an FIR online?",
@@ -36,6 +36,11 @@ export default function ChatbotPage() {
   const [inputMessage, setInputMessage] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -75,8 +80,8 @@ export default function ChatbotPage() {
   const getBotResponse = (question: string): string => {
     const lowerQuestion = question.toLowerCase()
 
-    if (lowerQuestion.includes("theft") || lowerQuestion.includes("stealing")) {
-      return "Under IPC Section 378-382, theft is punishable with imprisonment up to 3 years, or fine, or both. The punishment varies based on the value of stolen property and circumstances. For theft in dwelling house (Section 380), punishment can extend to 7 years."
+    if (lowerQuestion.includes("dowry") || lowerQuestion.includes("stealing")) {
+      return "Act no. 28 of 1961: If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees."
     }
 
     if (lowerQuestion.includes("domestic violence") || lowerQuestion.includes("dv")) {
@@ -124,9 +129,8 @@ export default function ChatbotPage() {
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[80%] rounded-lg p-3 ${
-                    message.sender === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-900"
-                  }`}
+                  className={`max-w-[80%] rounded-lg p-3 ${message.sender === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-900"
+                    }`}
                 >
                   <div className="flex items-start gap-2">
                     {message.sender === "bot" && <Bot className="h-5 w-5 mt-0.5 text-blue-600" />}
@@ -134,7 +138,7 @@ export default function ChatbotPage() {
                     <div className="flex-1">
                       <p className="text-sm leading-relaxed">{message.content}</p>
                       <p className={`text-xs mt-1 ${message.sender === "user" ? "text-blue-100" : "text-gray-500"}`}>
-                        {message.timestamp.toLocaleTimeString()}
+                        {mounted ? message.timestamp.toLocaleTimeString() : ""}
                       </p>
                     </div>
                   </div>
