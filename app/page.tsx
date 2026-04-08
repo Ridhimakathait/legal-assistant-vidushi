@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-fuchsia-50">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16 pb-[11rem]">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
             <Scale className="h-12 w-12 text-pink-600 mr-3" />
