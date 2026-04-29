@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -55,44 +58,102 @@ const complaintTypes = [
   },
 ]
 
-const firSteps = [
-  {
-    step: 1,
-    title: "Immediate Action",
-    content:
-      "If it's an emergency, call 100 (Police) or 112 (Emergency). Preserve evidence and note down details immediately.",
+const stepsData: Record<string, { title: string; steps: { step: number; title: string; content: string }[] }> = {
+  "fir": {
+    title: "How to File an FIR - Detailed Steps",
+    steps: [
+      {
+        step: 1,
+        title: "Immediate Action",
+        content: "If it's an emergency, call 100 (Police) or 112 (Emergency). Preserve evidence and note down details immediately.",
+      },
+      {
+        step: 2,
+        title: "Visit Police Station",
+        content: "Go to the nearest police station in whose jurisdiction the crime occurred. Carry identification documents.",
+      },
+      {
+        step: 3,
+        title: "Provide Written Complaint",
+        content: "Submit a written complaint with all details: date, time, place, nature of offense, and names of accused if known.",
+      },
+      {
+        step: 4,
+        title: "FIR Registration",
+        content: "Police must register FIR for cognizable offenses. They cannot refuse to register FIR for serious crimes.",
+      },
+      {
+        step: 5,
+        title: "Get FIR Copy",
+        content: "Obtain a copy of the FIR with FIR number. This is your legal right and free of cost.",
+      },
+      {
+        step: 6,
+        title: "Follow Up",
+        content: "Stay in touch with investigating officer. Provide additional evidence if available. Cooperate with investigation.",
+      },
+    ]
   },
-  {
-    step: 2,
-    title: "Visit Police Station",
-    content:
-      "Go to the nearest police station in whose jurisdiction the crime occurred. Carry identification documents.",
+  "cyber": {
+    title: "How to File a Cyber Crime Complaint",
+    steps: [
+      { step: 1, title: "Preserve Evidence", content: "Do not delete URLs, emails, or screenshots. Save all digital evidence like chat histories or bank statements." },
+      { step: 2, title: "Register on Portal", content: "Visit the National Cyber Crime Reporting Portal (cybercrime.gov.in) and register yourself." },
+      { step: 3, title: "File Complaint", content: "Fill out the incidence details carefully, attach the preserved evidence, and submit." },
+      { step: 4, title: "Follow Up", content: "Track your complaint using the acknowledgment number provided on the portal." }
+    ]
   },
-  {
-    step: 3,
-    title: "Provide Written Complaint",
-    content:
-      "Submit a written complaint with all details: date, time, place, nature of offense, and names of accused if known.",
+  "domestic-violence": {
+    title: "How to File a Domestic Violence Complaint",
+    steps: [
+      { step: 1, title: "Seek Safety", content: "Reach a safe place. Contact Women Helpline (1091) or Emergency (112) if in immediate danger." },
+      { step: 2, title: "Contact Protection Officer", content: "Reach out to the local Protection Officer or an NGO working for women's rights." },
+      { step: 3, title: "File DIR", content: "The Protection Officer will help you file a Domestic Incident Report (DIR)." },
+      { step: 4, title: "Court Proceedings", content: "The matter is forwarded to the Magistrate who can pass protection, residence, or maintenance orders." }
+    ]
   },
-  {
-    step: 4,
-    title: "FIR Registration",
-    content: "Police must register FIR for cognizable offenses. They cannot refuse to register FIR for serious crimes.",
+  "consumer": {
+    title: "How to File a Consumer Complaint",
+    steps: [
+      { step: 1, title: "Send Notice", content: "Send a formal legal notice to the service provider/seller outlining the issue." },
+      { step: 2, title: "Wait for Response", content: "Give them 15-30 days to resolve the grievance or respond to your notice." },
+      { step: 3, title: "File on NCH", content: "If unresolved, register your grievance on the National Consumer Helpline (NCH) portal." },
+      { step: 4, title: "Consumer Forum", content: "If still unresolved, approach the District/State/National Consumer Disputes Redressal Commission based on claim value." }
+    ]
   },
-  {
-    step: 5,
-    title: "Get FIR Copy",
-    content: "Obtain a copy of the FIR with FIR number. This is your legal right and free of cost.",
+  "harassment": {
+    title: "How to File a Workplace Harassment Complaint",
+    steps: [
+      { step: 1, title: "Document Incidents", content: "Keep a record of dates, times, and details of the harassment, including witnesses if any." },
+      { step: 2, title: "Identify ICC", content: "Find out the members of the Internal Complaints Committee (ICC) at your workplace." },
+      { step: 3, title: "Submit Complaint", content: "Submit a written complaint to the ICC within 3 months of the date of the incident." },
+      { step: 4, title: "Inquiry Process", content: "The ICC must complete the inquiry within 90 days and submit the report to the employer for action." }
+    ]
   },
-  {
-    step: 6,
-    title: "Follow Up",
-    content:
-      "Stay in touch with investigating officer. Provide additional evidence if available. Cooperate with investigation.",
-  },
-]
+  "police": {
+    title: "How to File a Complaint Against Police",
+    steps: [
+      { step: 1, title: "Gather Evidence", content: "Collect any proof of misconduct, refusal to register FIR, or harassment (e.g., recordings, witnesses)." },
+      { step: 2, title: "Approach Senior Officers", content: "File a written complaint with the Superintendent of Police (SP) or Deputy Commissioner of Police (DCP)." },
+      { step: 3, title: "SPCA", content: "If unresolved, approach the State Police Complaints Authority (SPCA) set up specifically for this." },
+      { step: 4, title: "Court/NHRC", content: "As a last resort, approach the local Magistrate court or the State/National Human Rights Commission (NHRC)." }
+    ]
+  }
+}
 
 export default function ComplaintStepsPage() {
+  const [activeType, setActiveType] = useState("fir")
+  const stepsContainerRef = useRef<HTMLDivElement>(null)
+
+  const handleViewSteps = (id: string) => {
+    setActiveType(id)
+    setTimeout(() => {
+      stepsContainerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 100)
+  }
+
+  const activeData = stepsData[activeType]
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
@@ -140,8 +201,14 @@ export default function ComplaintStepsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {complaintTypes.map((type) => {
               const IconComponent = type.icon
+              const isActive = activeType === type.id
+
               return (
-                <Card key={type.id} className="hover:shadow-lg transition-shadow">
+                <Card
+                  key={type.id}
+                  className={`hover:shadow-lg transition-all cursor-pointer ${isActive ? 'ring-2 ring-pink-500 border-pink-500' : ''}`}
+                  onClick={() => handleViewSteps(type.id)}
+                >
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className={`p-2 rounded-lg ${type.color}`}>
@@ -155,8 +222,15 @@ export default function ComplaintStepsPage() {
                     <CardDescription>{type.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="outline" className="w-full bg-transparent">
-                      View Steps
+                    <Button
+                      variant={isActive ? "default" : "outline"}
+                      className={`w-full ${isActive ? 'bg-pink-600 hover:bg-pink-700' : 'bg-transparent text-gray-600 hover:text-pink-600 border-gray-300'}`}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleViewSteps(type.id)
+                      }}
+                    >
+                      {isActive ? "Viewing Steps" : "View Steps"}
                     </Button>
                   </CardContent>
                 </Card>
@@ -165,15 +239,15 @@ export default function ComplaintStepsPage() {
           </div>
         </div>
 
-        {/* Detailed FIR Process */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">How to File an FIR - Detailed Steps</h2>
+        {/* Detailed Process Section */}
+        <div className="mb-12 scroll-mt-20" ref={stepsContainerRef}>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{activeData.title}</h2>
           <div className="space-y-4">
-            {firSteps.map((step) => (
+            {activeData.steps.map((step) => (
               <Card key={step.step} className="hover:shadow-md transition-shadow">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                    <div className="bg-pink-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">
                       {step.step}
                     </div>
                     <div className="flex-1">
