@@ -3,37 +3,51 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Scale, MessageCircle, FileText, HelpCircle, Download, Users } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
+import LanguageSelector from "@/components/language-selector"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-fuchsia-50">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 pb-[11rem]">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-6">
-            <Scale className="h-12 w-12 text-pink-600 mr-3" />
-            <h1 className="text-4xl md:text-6xl font-bold text-pink-900">Vidushi</h1>
+      <section className="container mx-auto px-4 py-16 lg:py-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Left Side: Text */}
+          <div className="flex-1 text-center lg:text-left max-w-2xl">
+            <div className="flex items-center justify-center lg:justify-start mb-6">
+              <Scale className="h-12 w-12 text-pink-600 mr-3" />
+              <h1 className="text-4xl md:text-6xl font-bold text-pink-900">Vidushi</h1>
+            </div>
+            <p className="text-xl md:text-2xl text-pink-700 mb-8">
+              Your AI-powered legal assistant for understanding Indian laws, filing complaints, and accessing justice
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700">
+                <Link href="/chatbot">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Ask Legal Questions
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-pink-300 text-pink-700 hover:bg-pink-50">
+                <Link href="/laws">
+                  <Scale className="mr-2 h-5 w-5" />
+                  Explore Laws
+                </Link>
+              </Button>
+            </div>
           </div>
-          <p className="text-xl md:text-2xl text-pink-700 mb-8 max-w-3xl mx-auto">
-            Your AI-powered legal assistant for understanding Indian laws, filing complaints, and accessing justice
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700">
-              <Link href="/chatbot">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Ask Legal Questions
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-pink-300 text-pink-700 hover:bg-pink-50">
-              <Link href="/laws">
-                <Scale className="mr-2 h-5 w-5" />
-                Explore Laws
-              </Link>
-            </Button>
+
+          {/* Right Side: Image Sticker */}
+          <div className="flex-1 flex justify-center lg:justify-end">
+            <Image
+              src="/image.png"
+              alt="Vidushi Legal Assistant Sticker"
+              width={500}
+              height={500}
+              className="object-contain"
+            />
           </div>
         </div>
-
-
       </section>
 
       {/* Features Section */}
@@ -134,14 +148,7 @@ export default function HomePage() {
       <section className="bg-gradient-to-r from-pink-50 to-rose-50 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8 text-pink-900">Multi-Language Support</h2>
-          <div className="flex justify-center gap-4 mb-8">
-            <Badge variant="secondary" className="text-lg py-2 px-4 bg-pink-100 text-pink-800 border-pink-200">
-              English
-            </Badge>
-            <Badge variant="secondary" className="text-lg py-2 px-4 bg-rose-100 text-rose-800 border-rose-200">
-              हिंदी
-            </Badge>
-          </div>
+          <LanguageSelector />
           <p className="text-pink-700 max-w-2xl mx-auto">
             Access legal information and assistance in both English and Hindi to ensure everyone can understand their
             rights and legal options.

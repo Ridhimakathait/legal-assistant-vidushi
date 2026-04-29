@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Scale, Mail } from "lucide-react"
+import TranslatedText from "@/components/translated-text"
 
 export default function Footer() {
   return (
@@ -57,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/laws?category=criminal" className="text-gray-300 hover:text-white transition-colors">
-                  Criminal Law
+                  <TranslatedText en="Criminal Law" hi="आपराधिक कानून" />
                 </Link>
               </li>
               <li>

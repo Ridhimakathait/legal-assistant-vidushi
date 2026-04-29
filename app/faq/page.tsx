@@ -6,11 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Search, HelpCircle, Scale, Users, FileText, Shield } from "lucide-react"
 import { useState } from "react"
+import TranslatedText from "@/components/translated-text"
 
 const faqCategories = [
   {
     id: "criminal",
-    title: "Criminal Law",
+    title: <TranslatedText en="Criminal Law" hi="आपराधिक कानून" />,
     icon: Scale,
     color: "bg-red-100 text-red-700",
     count: 15,
@@ -173,7 +174,7 @@ export default function FAQPage() {
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             {selectedCategory
-              ? `${faqCategories.find((c) => c.id === selectedCategory)?.title} Questions`
+              ? <>{faqCategories.find((c) => c.id === selectedCategory)?.title} Questions</>
               : "All Questions"}
           </h2>
 

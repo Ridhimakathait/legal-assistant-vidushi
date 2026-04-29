@@ -5,24 +5,36 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Search, BookOpen, Scale, Shield, XCircle } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+
+interface Section {
+  id: string
+  law: string
+  section: string
+  title: string
+  description: string
+  category: string
+  keywords?: string[]
+}
 
 const lawCategories = [
   {
-    id: "ipc",
-    title: "Indian Penal Code (IPC)",
-    description: "Criminal laws and offenses",
-    sections: 511,
+    id: "divorce",
+    title: "Divorce Laws in India",
+    description: "Maintenance and alimony rights",
+    sections: 3,
     icon: Scale,
     color: "bg-red-100 text-red-700",
+    lawMatch: "Divorce Law",
   },
   {
-    id: "crpc",
-    title: "Code of Criminal Procedure (CrPC)",
+    id: "bnss",
+    title: "Bharatiya Nagarik Suraksha Sanhita (BNSS)",
     description: "Criminal procedure and investigation",
-    sections: 484,
+    sections: 531,
     icon: BookOpen,
     color: "bg-blue-100 text-blue-700",
+    lawMatch: "BNSS",
   },
   {
     id: "domestic-violence",
@@ -31,6 +43,7 @@ const lawCategories = [
     sections: 37,
     icon: Shield,
     color: "bg-purple-100 text-purple-700",
+    lawMatch: "Domestic Violence Act",
   },
   {
     id: "posh",
@@ -39,6 +52,7 @@ const lawCategories = [
     sections: 28,
     icon: Shield,
     color: "bg-green-100 text-green-700",
+    lawMatch: "POSH Act",
   },
   {
     id: "dowry",
@@ -47,6 +61,7 @@ const lawCategories = [
     sections: 8,
     icon: Scale,
     color: "bg-orange-100 text-orange-700",
+    lawMatch: "Dowry Prohibition Act",
   },
   {
     id: "cyber",
@@ -55,71 +70,34 @@ const lawCategories = [
     sections: 124,
     icon: BookOpen,
     color: "bg-teal-100 text-teal-700",
+    lawMatch: "IT Act",
   },
-]
-
-const allSections = [
-
-  {
-    id: "ipc-376",
-    categoryId: "ipc",
-    law: "IPC",
-    section: "376",
-    title: "Rape",
-    description: "Whoever commits rape shall be punished with rigorous imprisonment for a term not less than ten years.",
-    category: "Sexual Offenses",
-  },
-  {
-    id: "crpc-154",
-    categoryId: "crpc",
-    law: "CrPC",
-    section: "154",
-    title: "Information in cognizable cases (FIR)",
-    description: "Every information relating to the commission of a cognizable offence, if given orally to an officer in charge of a police station, shall be reduced to writing by him or under his direction.",
-    category: "Criminal Procedure",
-  },
-  {
-    id: "dv-3",
-    categoryId: "domestic-violence",
-    law: "Domestic Violence Act",
-    section: "3",
-    title: "Definition of domestic violence",
-    description: "Any act, omission or commission or conduct of the respondent shall constitute domestic violence.",
-    category: "Domestic Violence",
-  },
-  {
-    id: "posh-9",
-    categoryId: "posh",
-    law: "POSH Act",
-    section: "9",
-    title: "Complaint of sexual harassment",
-    description: "Any aggrieved woman may make, in writing, a complaint of sexual harassment at workplace to the Internal Committee within a period of three months from the date of incident.",
-    category: "Workplace Harassment",
-  },
-  {
-    id: "dowry-3",
-    categoryId: "dowry",
-    law: "Dowry Prohibition Act",
-    section: "3",
-    title: "Penalty for giving or taking dowry",
-    description: "If any person gives or takes or abets the giving or taking of dowry, they shall be punishable with imprisonment for a term which shall not be less than five years.",
-    category: "Dowry",
-  },
-  {
-    id: "cyber-66",
-    categoryId: "cyber",
-    law: "IT Act",
-    section: "66",
-    title: "Computer related offences",
-    description: "If any person, dishonestly or fraudulently, does any act referred to in section 43, he shall be punishable with imprisonment for a term which may extend to three years or with fine.",
-    category: "Cyber Crimes",
-  }
 ]
 
 export default function LawsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [allSections, setAllSections] = useState<Section[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const sectionsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const fetchLaws = async () => {
+      try {
+        const response = await fetch("/api/laws")
+        if (response.ok) {
+          const data = await response.json()
+          setAllSections(data.sections || [])
+        }
+      } catch (error) {
+        console.error("Failed to fetch laws:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    fetchLaws()
+  }, [])
 
   const handleCategoryClick = (categoryId: string) => {
     if (selectedCategory === categoryId) {
@@ -135,7 +113,28 @@ export default function LawsPage() {
 
   const filteredSections = allSections.filter((section) => {
     // 1. Filter by category
-    if (selectedCategory && section.categoryId !== selectedCategory) return false
+    if (selectedCategory) {
+      const categoryData = lawCategories.find(c => c.id === selectedCategory)
+      if (categoryData) {
+        // Special case for Dowry to include IPC sections related to dowry
+        if (categoryData.id === "dowry") {
+          const isDowryRelated = 
+            section.law === "Dowry Prohibition Act" || 
+            section.title.toLowerCase().includes("dowry") || 
+            (section.keywords && section.keywords.some(k => k.toLowerCase().includes("dowry")));
+          
+          if (!isDowryRelated) return false;
+        } else if (categoryData.id === "cyber") {
+          const isCyberRelated = 
+            section.law === "IT Act" || 
+            (section.keywords && section.keywords.some(k => k.toLowerCase().includes("cyber")));
+            
+          if (!isCyberRelated) return false;
+        } else if (section.law !== categoryData.lawMatch) {
+          return false;
+        }
+      }
+    }
 
     // 2. Filter by search term
     if (searchTerm) {
@@ -145,7 +144,8 @@ export default function LawsPage() {
         section.description.toLowerCase().includes(lowerSearch) ||
         section.law.toLowerCase().includes(lowerSearch) ||
         section.section.toLowerCase().includes(lowerSearch) ||
-        section.category.toLowerCase().includes(lowerSearch)
+        section.category.toLowerCase().includes(lowerSearch) ||
+        (section.keywords && section.keywords.some(k => k.toLowerCase().includes(lowerSearch)))
       )
     }
     return true
@@ -253,7 +253,12 @@ export default function LawsPage() {
         <div className="scroll-mt-20" ref={sectionsRef}>
           <h2 className="text-2xl font-bold text-gray-900 mb-6">{getSectionTitle()}</h2>
 
-          {filteredSections.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600 mx-auto mb-4"></div>
+              <p className="text-gray-500">Loading legal sections...</p>
+            </div>
+          ) : filteredSections.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
               <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-1">No sections found</h3>

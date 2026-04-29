@@ -80,11 +80,11 @@ export default function ChatbotPage() {
   const getBotResponse = (question: string): string => {
     const lowerQuestion = question.toLowerCase()
 
-    if (lowerQuestion.includes("dowry") || lowerQuestion.includes("stealing")) {
+    if (lowerQuestion.includes("dowry")) {
       return "Act no. 28 of 1961: If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees."
     }
 
-    if (lowerQuestion.includes("domestic violence") || lowerQuestion.includes("dv")) {
+    if (lowerQuestion.includes("domestic violence")) {
       return "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders. The complaint can be filed by the aggrieved person or on her behalf by relatives, social workers, or organizations."
     }
 
