@@ -230,7 +230,7 @@ export default function ComplaintStepsPage() {
                         handleViewSteps(type.id)
                       }}
                     >
-                      {isActive ? "Viewing Steps" : "View Steps"}
+                      {isActive ? "प्रक्रिया देख रहे हैं" : "प्रक्रिया देखें"}
                     </Button>
                   </CardContent>
                 </Card>
