@@ -169,7 +169,7 @@ const legalSections = [
     law: "BNSS",
     section: "35-38",
     title: "Protection during Arrest",
-    description: "Existing safeguards for women are retained, such as the prohibition of arrest between sunset and sunrise, except in extraordinary circumstances requiring a female officer.",
+    description: "Existing safeguards for women are retained such as the prohibition of arrest between sunset and sunrise, except in extraordinary circumstances requiring a female officer.",
     category: "Arrest & Investigation",
     keywords: ["arrest", "sunset", "sunrise", "female officer", "protection", "women"],
   },
