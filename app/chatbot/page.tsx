@@ -64,39 +64,40 @@ export default function ChatbotPage() {
     setInputMessage("")
     setIsTyping(true)
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userMessage.content }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch response")
+      }
+
+      const data = await response.json()
+
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content: getBotResponse(inputMessage),
+        content: data.response,
         sender: "bot",
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, botResponse])
+    } catch (error) {
+      console.error("Chat error:", error)
+      const errorResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Sorry, I encountered an error connecting to the server. Please try again.",
+        sender: "bot",
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, errorResponse])
+    } finally {
       setIsTyping(false)
-    }, 1500)
-  }
-
-  const getBotResponse = (question: string): string => {
-    const lowerQuestion = question.toLowerCase()
-
-    if (lowerQuestion.includes("dowry")) {
-      return "Act no. 28 of 1961: If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees."
     }
-
-    if (lowerQuestion.includes("domestic violence")) {
-      return "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders. The complaint can be filed by the aggrieved person or on her behalf by relatives, social workers, or organizations."
-    }
-
-    if (lowerQuestion.includes("fir") || lowerQuestion.includes("police complaint")) {
-      return "To file an FIR: 1) Visit the nearest police station, 2) Provide written complaint with details, 3) Police must register FIR for cognizable offenses, 4) Get a copy of FIR, 5) If police refuses, approach SP/Magistrate. You can also file online FIR in many states for certain offenses."
-    }
-
-    if (lowerQuestion.includes("harassment") || lowerQuestion.includes("posh")) {
-      return "Under POSH Act 2013, every workplace must have Internal Complaints Committee (ICC). You can file complaint within 3 months of incident. ICC must complete inquiry within 90 days. Employer must provide safe working environment and take action based on ICC recommendations."
-    }
-
-    return "I understand your question about legal matters. For specific legal advice, I recommend consulting with a qualified lawyer. However, I can provide general information about Indian laws. Could you please be more specific about which area of law you're interested in - criminal law, civil law, family law, or constitutional law?"
   }
 
   const handleSuggestedQuestion = (question: string) => {

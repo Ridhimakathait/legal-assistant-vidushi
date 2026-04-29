@@ -31,7 +31,7 @@ const lawCategories = [
     id: "bnss",
     title: "Bharatiya Nagarik Suraksha Sanhita (BNSS)",
     description: "Criminal procedure and investigation",
-    sections: 531,
+    sections: 4,
     icon: BookOpen,
     color: "bg-blue-100 text-blue-700",
     lawMatch: "BNSS",
@@ -40,7 +40,7 @@ const lawCategories = [
     id: "domestic-violence",
     title: "Domestic Violence Act",
     description: "Protection from domestic violence",
-    sections: 37,
+    sections: 1,
     icon: Shield,
     color: "bg-purple-100 text-purple-700",
     lawMatch: "Domestic Violence Act",
@@ -49,7 +49,7 @@ const lawCategories = [
     id: "posh",
     title: "POSH Act",
     description: "Prevention of Sexual Harassment at Workplace",
-    sections: 28,
+    sections: 1,
     icon: Shield,
     color: "bg-green-100 text-green-700",
     lawMatch: "POSH Act",
@@ -58,7 +58,7 @@ const lawCategories = [
     id: "dowry",
     title: "Dowry Prohibition Act",
     description: "Prevention of dowry-related crimes",
-    sections: 8,
+    sections: 3,
     icon: Scale,
     color: "bg-orange-100 text-orange-700",
     lawMatch: "Dowry Prohibition Act",
@@ -67,7 +67,7 @@ const lawCategories = [
     id: "cyber",
     title: "IT Act (Cyber Laws)",
     description: "Information technology and cyber crimes",
-    sections: 124,
+    sections: 8,
     icon: BookOpen,
     color: "bg-teal-100 text-teal-700",
     lawMatch: "IT Act",
@@ -95,7 +95,7 @@ export default function LawsPage() {
         setIsLoading(false)
       }
     }
-    
+
     fetchLaws()
   }, [])
 
@@ -118,17 +118,17 @@ export default function LawsPage() {
       if (categoryData) {
         // Special case for Dowry to include IPC sections related to dowry
         if (categoryData.id === "dowry") {
-          const isDowryRelated = 
-            section.law === "Dowry Prohibition Act" || 
-            section.title.toLowerCase().includes("dowry") || 
+          const isDowryRelated =
+            section.law === "Dowry Prohibition Act" ||
+            section.title.toLowerCase().includes("dowry") ||
             (section.keywords && section.keywords.some(k => k.toLowerCase().includes("dowry")));
-          
+
           if (!isDowryRelated) return false;
         } else if (categoryData.id === "cyber") {
-          const isCyberRelated = 
-            section.law === "IT Act" || 
+          const isCyberRelated =
+            section.law === "IT Act" ||
             (section.keywords && section.keywords.some(k => k.toLowerCase().includes("cyber")));
-            
+
           if (!isCyberRelated) return false;
         } else if (section.law !== categoryData.lawMatch) {
           return false;
