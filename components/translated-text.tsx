@@ -6,7 +6,25 @@ export default function TranslatedText({ en, hi }: { en: string; hi: string }) {
   const [isHi, setIsHi] = useState(false)
 
   useEffect(() => {
-    setIsHi(document.cookie.includes("googtrans=/en/hi"))
+    const checkLang = () => {
+      setIsHi(
+        document.cookie.includes("googtrans=/en/hi") || 
+        document.documentElement.lang === "hi" || 
+        document.documentElement.classList.contains("translated-ltr")
+      )
+    }
+
+    checkLang()
+
+    const observer = new MutationObserver(checkLang)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "lang"] })
+
+    const interval = setInterval(checkLang, 1000)
+
+    return () => {
+      observer.disconnect()
+      clearInterval(interval)
+    }
   }, [])
 
   return (

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { FileText, AlertCircle, Phone, Globe, Building, Shield } from "lucide-react"
+import TranslatedText from "@/components/translated-text"
 
 const complaintTypes = [
   {
@@ -230,7 +231,11 @@ export default function ComplaintStepsPage() {
                         handleViewSteps(type.id)
                       }}
                     >
-                      {isActive ? "प्रक्रिया देख रहे हैं" : "प्रक्रिया देखें"}
+                      {isActive ? (
+                        <TranslatedText en="Viewing Steps" hi="प्रक्रिया देख रहे हैं" />
+                      ) : (
+                        <TranslatedText en="View Steps" hi="प्रक्रिया देखें" />
+                      )}
                     </Button>
                   </CardContent>
                 </Card>

@@ -7,20 +7,15 @@ interface ChatMessage {
 
 // Mock legal knowledge base
 const legalResponses = {
-  dowry:
-    "If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees",
+  dowry: "If any person demands, directly or indirectly, from the parents or other relatives or guardian of a bride or bridegroom, as the case may be, any dowry, he shall be punishable with imprisonment for a term which shall not be less than six months, but which may extend to two years and with fine which may extend to ten thousand rupees",
 
-  "domestic violence":
-    "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders.",
+  "domestic violence": "Under the Domestic Violence Act 2005, you can file a complaint with the Magistrate or approach the Protection Officer. You can get protection orders, residence orders, monetary relief, and custody orders.",
 
   fir: "To file an FIR: 1) Visit the nearest police station, 2) Provide written complaint with details, 3) Police must register FIR for cognizable offenses, 4) Get a copy of FIR.",
 
-  harassment:
-    "Under POSH Act 2013, every workplace must have Internal Complaints Committee (ICC). You can file complaint within 3 months of incident.",
+  harassment: "Under POSH Act 2013, every workplace must have Internal Complaints Committee (ICC). You can file complaint within 3 months of incident.",
 
-  divorce:
-    "Grounds for divorce under Hindu Marriage Act include adultery, cruelty, desertion for 2+ years, conversion to another religion, mental disorder, communicable disease.",
-
+  divorce: "Grounds for divorce under Hindu Marriage Act include adultery, cruelty, desertion for 2+ years, conversion to another religion, mental disorder, communicable disease.",
   bail: "Bailable offenses allow release on bail as a matter of right. Non-bailable offenses require court's discretion. Bail can be denied if accused may flee or tamper with evidence.",
   pornography: "Under Section 67 of the IT Act, 2000, publishing or transmitting obscene material in electronic form is punishable with imprisonment up to 3 years and fine up to 5 lakh rupees on first conviction. If it involves children (child pornography), it falls under Section 67B of the IT Act and the POCSO Act, with much stricter penalties.",
   cyberbullying: "Cyberbullying can be addressed under various sections of the IT Act and IPC. Section 67 of the IT Act penalizes transmitting obscene material. If it involves a woman, Section 354D IPC (Cyber Stalking) or Section 509 IPC (Insulting modesty of a woman) can be applied.",
